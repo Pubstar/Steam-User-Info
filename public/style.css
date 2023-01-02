@@ -1,0 +1,55 @@
+body {
+    background:radial-gradient(farthest-corner at 40px 100vh,#2A475E 0%, #1B2838 80%);
+    height: 100vh;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+    margin:0;
+    padding:0;
+    color: white;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+img{
+    border: 1px solid black;
+}
+
+h2 {
+    margin: 0;
+    margin-bottom:10px;
+}
+
+a{
+    color:white;
+}
+
+nav {
+    display:flex;
+    border-bottom: 1px solid black;
+    height: 50px;
+    align-items: center;
+    padding-left:20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color:#171a21;
+}
+
+.friendLink {
+    background-color: #202d39;
+    border: none;
+    padding:0;
+    font-size: 18px;
+    margin:3px;
+    color: white;
+}
+
+.panel {
+    background: #202d39;
+    width:30%;
+    min-width:230px;
+    padding:20px;
+    margin:20px;
+    border: 1px solid black;
+}

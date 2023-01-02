@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <title>Steam API</title>
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+    <center>
+        <main>
+            <section>
+                <header>
+                    <h1>Steam User Information</h1>
+                </header>
+                <form method="get" action="/user/">
+                    <label for="userId">Enter UserId:</label>
+                    <input type="text" name="userId" id="userId">
+                    <button>Search</button>
+                </form>
+            </section>
+            <section class="panel userInformation">
+                <h2>User Information</h2>
+                <% if(userData){ %>
+                    <% try{ %>
+                        <img src="<%= userData.players[0].avatarmedium %> ">
+                        <br>
+                        <span><b>Username: </b>
+                            <%= userData.players[0].personaname %>
+                        </span>
+                        <br>
+                        <span><b>Profile: </b>
+                            <a href="<%=userData.players[0].profileurl%>">Link</a>
+                        </span>
+                        <br>
+                        <span><b>Country: </b>
+                            <%= userData.players[0].loccountrycode %>
+                        </span>
+                        <br>
+                        <% } catch { %>
+                            <% } %>
+                                <% } %>
+            </section>
+            <section class="panel userBanInformation">
+                <h2>User Ban Information</h2>
+                <% if(userBanData){ %>
+                    <% try{ %>
+                        <span><b>Community banned: </b>
+                            <%= userBanData.players[0].CommunityBanned %>
+                        </span>
+                        <br>
+                        <span><b>VAC banned: </b>
+                            <%= userBanData.players[0].VACBanned %>
+                        </span>
+                        <br>
+                        <span><b>Total VAC bans: </b>
+                            <%= userBanData.players[0].NumberOfVACBans %>
+                        </span>
+                        <br>
+                        <span><b>Days since last ban: </b>
+                            <%= userBanData.players[0].DaysSinceLastBan %>
+                        </span>
+                        <br>
+                        <span><b>Total game bans: </b>
+                            <%= userBanData.players[0].NumberOfGameBans %>
+                        </span>
+                        <br>
+                        <span><b>Economy ban: </b>
+                            <%= userBanData.players[0].EconomyBan %>
+                        </span>
+                        <% }catch{} %>
+                            <% } %>
+            </section>
+            <section class="panel userFriendData">
+                <h2>User Friend List</h2>
+                <% if(userFriendData){ %>
+                    <% try{ %>
+                        <% for(let friend of userFriendData.friendslist.friends){ %>
+                            <span><b>Friend ID: </b>
+                                <form action="/user/<%= friend.steamid %>">
+                                    <button class="friendLink">
+                                        <%= friend.steamid %>
+                                    </button>
+                                </form>
+                                <br>
+                            </span>
+                            <% } %>
+                                <% }catch(e){console.log(e)} %>
+                                    <% } else { %>
+                                        User's friend data is not public
+                                        <% } %>
+            </section>
+        </main>
+    </center>
+</body>
+
+</html>
