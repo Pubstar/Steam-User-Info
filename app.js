@@ -93,6 +93,6 @@ async function getUserFriendData(userId) {
     })
 }
 
-app.listen(3000, () => {
-    console.log('Server started on port: 3000');
+const listener = app.listen(process.env.PORT || 3000, () => {
+    console.log('Server started on port: ' + listener.address().port);
 })
